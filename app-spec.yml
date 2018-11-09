@@ -23,4 +23,4 @@ Resources:
         'lambda-console:blueprint': ses-notification-python
       Environment:
         Variables: 
-          S3_BUCKET: !Ref bucket
+          BUCKET: !Ref bucket
