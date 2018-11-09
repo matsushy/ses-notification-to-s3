@@ -15,7 +15,7 @@ def lambda_handler(event, context):
 
 def save_nortification(notification_type, timestamp, report):
     keyname = notification_type + '/' + timestamp
-    print('Saving s3://' + BUCKET + '/' + keyname + ':' + report)
+    print('Saving s3://' + bucket + '/' + keyname + ':' + report)
     s3.put_object(Bucket=bucket, Key=keyname , Body=report)
 
 
