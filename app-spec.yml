@@ -32,3 +32,10 @@ Resources:
       Environment:
         Variables: 
           S3_BUCKET: !Ref bucket
+  LambdaFunctionPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction, 
+      FunctionName: !Ref SESNotificationToS3
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref topic
