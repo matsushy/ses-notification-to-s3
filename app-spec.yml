@@ -4,9 +4,6 @@ Description: >-
   An Amazon SES notification handler for processing bounces, complaints and
   deliveries.
 Parameters:
-  topic:
-    Type: String
-    Description: SNS Topic ARN
   bucket:
     Type: String
     Description: S3 Bucket
@@ -22,20 +19,8 @@ Resources:
         and deliveries.
       MemorySize: 128
       Timeout: 10
-      Events:
-        SNS1:
-          Type: SNS
-          Properties:
-            Topic: !Ref topic
       Tags:
         'lambda-console:blueprint': ses-notification-python
       Environment:
         Variables: 
           S3_BUCKET: !Ref bucket
-  LambdaFunctionPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction, 
-      FunctionName: !Ref SESNotificationToS3
-      Principal: sns.amazonaws.com
-      SourceArn: !Ref topic
