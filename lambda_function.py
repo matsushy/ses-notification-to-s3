@@ -2,7 +2,7 @@ from __future__ import print_function
 import boto3
 import json
 
-BUCKET = "csol-ses-test1"
+bucket = os.environ['BUCKET']
 s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
@@ -14,8 +14,8 @@ def lambda_handler(event, context):
 
 def save_nortification(notification_type, message):
     keyname = notification_type + '/' + datetime.datetime.now().strftime('%s')
-    print('Saving s3://' + BUCKET + '/' + keyname + ' : ' + message)
-    s3.put_object(Bucket=BUCKET, Key=keyname , Body=message)
+    print('Saving s3://' + bucket + '/' + keyname + ' : ' + message)
+    s3.put_object(Bucket=bucket, Key=keyname , Body=message)
 
 
 def handle_bounce(message):

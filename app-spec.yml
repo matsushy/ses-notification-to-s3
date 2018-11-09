@@ -3,8 +3,12 @@ Transform: 'AWS::Serverless-2016-10-31'
 Description: >-
   An Amazon SES notification handler for processing bounces, complaints and
   deliveries.
+Parameters:
+  bucket:
+    Type: String
+    Description: S3 Bucket
 Resources:
-  ses-notification-to-s3:
+  SESNotificationToS3:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: lambda_function.lambda_handler
@@ -15,17 +19,8 @@ Resources:
         and deliveries.
       MemorySize: 128
       Timeout: 10
-      Role: 'arn:aws:iam::365464100180:role/service-role/ses-notification-to-s3'
-      Events:
-        SNS1:
-          Type: SNS
-          Properties:
-            Topic:
-              Ref: SNSTopic1
       Tags:
         'lambda-console:blueprint': ses-notification-python
       Environment:
         Variables: 
-          S3_BUCKET: bucket-name
-  SNSTopic1:
-    Type: 'AWS::SNS::Topic'
+          S3_BUCKET: !Ref bucket
