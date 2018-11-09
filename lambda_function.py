@@ -1,6 +1,7 @@
 from __future__ import print_function
 import boto3
 import json
+import os
 
 bucket = os.environ['BUCKET']
 s3 = boto3.client('s3')
