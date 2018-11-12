@@ -11,6 +11,7 @@ An Amazon SES notification handler for processing bounces, complaints and delive
 
 1. Create this Lambda Function with the Bucket name
 2. Subscribe the lambda endpoint to the Topic
+3. Allow s3:PutObject action to created IAM role for the bucket
 
 # License
 
